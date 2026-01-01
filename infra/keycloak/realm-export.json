@@ -1,0 +1,95 @@
+{
+    "id": "microshop",
+    "realm": "microshop",
+    "enabled": true,
+    "roles": {
+        "realm": [
+            {
+                "name": "ADMIN"
+            },
+            {
+                "name": "CLIENT"
+            }
+        ]
+    },
+    "clients": [
+        {
+            "clientId": "gateway-client",
+            "enabled": true,
+            "protocol": "openid-connect",
+            "publicClient": false,
+            "secret": "gateway-client-secret",
+            "directAccessGrantsEnabled": true,
+            "redirectUris": [
+                "*"
+            ],
+            "fullScopeAllowed": true,
+            "protocolMappers": [
+                {
+                    "name": "audience",
+                    "protocol": "openid-connect",
+                    "protocolMapper": "oidc-audience-mapper",
+                    "config": {
+                        "included.client.audience": "gateway-client",
+                        "id.token.claim": "false",
+                        "access.token.claim": "true"
+                    }
+                }
+            ]
+        },
+        {
+            "clientId": "frontend-client",
+            "enabled": true,
+            "protocol": "openid-connect",
+            "publicClient": true,
+            "webOrigins": [
+                "*"
+            ],
+            "redirectUris": [
+                "http://localhost:5173/*",
+                "http://localhost:3000/*"
+            ],
+            "fullScopeAllowed": true
+        }
+    ],
+    "users": [
+        {
+            "username": "admin",
+            "enabled": true,
+            "email": "admin@example.com",
+            "emailVerified": true,
+            "firstName": "Admin",
+            "lastName": "User",
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "admin123",
+                    "temporary": false
+                }
+            ],
+            "realmRoles": [
+                "ADMIN"
+            ],
+            "requiredActions": []
+        },
+        {
+            "username": "client",
+            "enabled": true,
+            "email": "client@example.com",
+            "emailVerified": true,
+            "firstName": "Client",
+            "lastName": "User",
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "client123",
+                    "temporary": false
+                }
+            ],
+            "realmRoles": [
+                "CLIENT"
+            ],
+            "requiredActions": []
+        }
+    ]
+}
