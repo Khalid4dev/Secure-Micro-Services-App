@@ -3,43 +3,40 @@ package com.example.orderservice.client;
 import com.example.orderservice.dto.ProductDTO;
 import com.example.orderservice.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClient;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
 
 @Component
 public class ProductServiceClient {
 
-    private final RestClient restClient;
+    private final WebClient webClient;
     private final String productServiceUrl;
 
-    public ProductServiceClient(RestClient.Builder builder,
+    public ProductServiceClient(WebClient webClient,
             @Value("${application.config.product-service-url}") String productServiceUrl) {
-        this.restClient = builder.build();
+        this.webClient = webClient;
         this.productServiceUrl = productServiceUrl;
     }
 
     public ProductDTO getProductById(Long id) {
-        String token = getToken();
-
-        return restClient.get()
-                .uri(productServiceUrl + "/{id}", id)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
-                .retrieve()
-                .onStatus(status -> status.value() == 404, (request, response) -> {
-                    throw new ProductNotFoundException("Product not found with id: " + id);
-                })
-                .body(ProductDTO.class);
-    }
-
-    private String getToken() {
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof Jwt) {
-            Jwt jwt = (Jwt) authentication.getPrincipal();
-            return jwt.getTokenValue();
+        try {
+            return webClient.get()
+                    .uri(productServiceUrl + "/" + id)
+                    .retrieve()
+                    .bodyToMono(ProductDTO.class)
+                    .block(); // Blocking for synchronous flow as requested
+        } catch (WebClientResponseException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new ProductNotFoundException("Product not found with id: " + id);
+            } else if (e.getStatusCode() == HttpStatus.FORBIDDEN || e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+                throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "inter-service auth failed");
+            }
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Error calling product-service", e);
         }
-        throw new RuntimeException("JWT token not found in security context");
     }
 }
