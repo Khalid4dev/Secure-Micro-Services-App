@@ -37,40 +37,16 @@ This project demonstrates a modern microservices architecture implementing an e-
 
 ### System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                         Client Browser                       │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Frontend (React)                          │
-│                    Port: 3000                                │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    API Gateway                               │
-│                    Port: 9090                                │
-│              (Route + JWT Validation)                        │
-└─────────┬──────────────────────────────┬────────────────────┘
-          │                              │
-          ▼                              ▼
-┌──────────────────────┐      ┌──────────────────────┐
-│  Product Service     │      │   Order Service      │
-│  Port: 8081          │      │   Port: 8082         │
-│  Database: productdb │      │   Database: orderdb  │
-└──────────────────────┘      └──────────────────────┘
-          │                              │
-          └──────────────┬───────────────┘
-                         │
-                         ▼
-              ┌──────────────────────┐
-              │     Keycloak         │
-              │     Port: 8080       │
-              │  (Authentication)    │
-              └──────────────────────┘
-```
+![Global Architecture](global-architecture.png)
+
+The application follows a microservices architecture pattern with the following components:
+
+- **Frontend Layer**: React application serving the user interface
+- **API Gateway**: Single entry point for all client requests with JWT validation
+- **Microservices Layer**: Independent services for products and orders
+- **Security Layer**: Keycloak for authentication and authorization
+- **Data Layer**: PostgreSQL databases (one per service)
+
 
 ### Service Components
 
@@ -123,6 +99,21 @@ This project demonstrates a modern microservices architecture implementing an e-
   - OAuth 2.0 / OpenID Connect
   - Role-based access control (RBAC)
   - JWT token issuance and validation
+
+### Order Creation Flow
+
+![Order Creation Flow](order-creation-flow.png)
+
+The diagram above illustrates the complete order creation process:
+
+1. **Authentication**: User logs in and receives JWT token
+2. **Product Selection**: User browses products and selects quantities
+3. **Order Submission**: Frontend sends order request to API Gateway
+4. **Validation**: Gateway validates JWT and forwards to Order Service
+5. **Processing**: Order Service validates products and stock availability
+6. **Persistence**: Order and items are saved to database
+7. **Confirmation**: User receives order confirmation with details
+
 
 ## Features
 
