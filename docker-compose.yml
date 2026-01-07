@@ -1,53 +1,42 @@
 services:
-  keycloak:
-    image: quay.io/keycloak/keycloak:24.0.1
-    container_name: keycloak
+  keycloak-db:
+    image: postgres:15
     environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: keycloak
-      KC_HOSTNAME_STRICT: "false"
-      KC_HTTP_ENABLED: "true"
-    command: start-dev --import-realm
-    ports:
-      - "8080:8080"
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
     volumes:
-      - keycloak_data:/opt/keycloak/data
-      - ./infra/keycloak/realm-export.json:/opt/keycloak/data/import/realm.json
+      - keycloak_db_data:/var/lib/postgresql/data
+    networks:
+      - microservice-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/health/live" ]
+      test: [ "CMD-SHELL", "pg_isready -U keycloak" ]
       interval: 10s
       timeout: 5s
       retries: 5
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
+    command: start-dev --import-realm
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./infra/keycloak/realm-export.json:/opt/keycloak/data/import/realm.json
     depends_on:
       keycloak-db:
         condition: service_healthy
     networks:
       - microservice-network
 
-  keycloak-db:
-    image: postgres:15
-    container_name: keycloak-db
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
-    volumes:
-      - keycloak_db_data:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U keycloak" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - microservice-network
-
   postgres-product:
     image: postgres:15
-    container_name: postgres-product
     environment:
       POSTGRES_DB: productdb
       POSTGRES_USER: productuser
@@ -56,17 +45,16 @@ services:
       - "5433:5432"
     volumes:
       - product_db_data:/var/lib/postgresql/data
+    networks:
+      - microservice-network
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U productuser -d productdb" ]
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - microservice-network
 
   postgres-order:
     image: postgres:15
-    container_name: postgres-order
     environment:
       POSTGRES_DB: orderdb
       POSTGRES_USER: orderuser
@@ -75,11 +63,90 @@ services:
       - "5434:5432"
     volumes:
       - order_db_data:/var/lib/postgresql/data
+    networks:
+      - microservice-network
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U orderuser -d orderdb" ]
       interval: 10s
       timeout: 5s
       retries: 5
+
+  product-service:
+    build: ./product-service
+    image: product-service:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-product:5432/productdb
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://localhost:8080/realms/microshop
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8080/realms/microshop/protocol/openid-connect/certs
+    depends_on:
+      postgres-product:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    healthcheck:
+      test: "wget --no-verbose --tries=1 --spider http://localhost:8081/actuator/health || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservice-network
+
+  order-service:
+    build: ./order-service
+    image: order-service:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-order:5432/orderdb
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://localhost:8080/realms/microshop
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8080/realms/microshop/protocol/openid-connect/certs
+      APPLICATION_CONFIG_PRODUCT_SERVICE_URL: http://product-service:8081/api/products
+    depends_on:
+      postgres-order:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+      product-service:
+        condition: service_healthy
+    healthcheck:
+      test: "wget --no-verbose --tries=1 --spider http://localhost:8082/actuator/health || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservice-network
+
+  api-gateway:
+    build: ./api-gateway
+    image: api-gateway:latest
+    ports:
+      - "9090:9090"
+    environment:
+      PRODUCT_SERVICE_URL: http://product-service:8081
+      ORDER_SERVICE_URL: http://order-service:8082
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://localhost:8080/realms/microshop
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8080/realms/microshop/protocol/openid-connect/certs
+    depends_on:
+      keycloak:
+        condition: service_started
+      product-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+    healthcheck:
+      test: "wget --no-verbose --tries=1 --spider http://localhost:9090/actuator/health || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservice-network
+
+  frontend:
+    build: ./frontend-react
+    image: frontend-react:latest
+    ports:
+      - "3000:80"
+    depends_on:
+      api-gateway:
+        condition: service_started
     networks:
       - microservice-network
 
@@ -88,7 +155,6 @@ networks:
     driver: bridge
 
 volumes:
-  keycloak_data:
   keycloak_db_data:
   product_db_data:
   order_db_data:

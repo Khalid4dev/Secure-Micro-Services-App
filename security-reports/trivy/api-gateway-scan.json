@@ -1,0 +1,3368 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2026-01-07T16:02:58.058263+01:00",
+  "ArtifactName": "api-gateway:latest",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.22.2"
+    },
+    "ImageID": "sha256:5073b597d54a6e2b30f63a0d732366b00cfe1d79479882e7e0fc58e80797cca0",
+    "DiffIDs": [
+      "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1",
+      "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984",
+      "sha256:c6974a5a45a38faf6dd7d8f37ced37c75f829723698df10788ce258bf6beb97a",
+      "sha256:bc709155484456fd652ac8135d3d8c4d040578f826d95bd3e65f1677d63c41c9",
+      "sha256:8bbd26e5bb80cf88ea0b926449672e027d876d51e97a7e6e1a272238fce04536",
+      "sha256:13e97a176d76a227f22388b3ff920237fd0d5b72d1426e97834e33a603546658",
+      "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+    ],
+    "RepoTags": [
+      "api-gateway:latest"
+    ],
+    "RepoDigests": [
+      "api-gateway@sha256:5073b597d54a6e2b30f63a0d732366b00cfe1d79479882e7e0fc58e80797cca0"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2026-01-07T14:25:19.35788353Z",
+      "history": [
+        {
+          "created": "2025-10-08T11:04:56Z",
+          "created_by": "ADD alpine-minirootfs-3.22.2-x86_64.tar.gz / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-10-08T11:04:56Z",
+          "created_by": "CMD [\"/bin/sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-11-08T17:59:35Z",
+          "created_by": "ENV JAVA_HOME=/opt/java/openjdk",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-11-08T17:59:35Z",
+          "created_by": "ENV PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-11-08T17:59:35Z",
+          "created_by": "ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-11-08T17:59:35Z",
+          "created_by": "RUN /bin/sh -c set -eux;     apk add --no-cache         fontconfig ttf-dejavu         gnupg         ca-certificates p11-kit-trust         musl-locales musl-locales-lang         tzdata         coreutils         openssl     ;     rm -rf /var/cache/apk/* # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-11-08T17:59:35Z",
+          "created_by": "ENV JAVA_VERSION=jdk-21.0.9+10",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-11-08T17:59:38Z",
+          "created_by": "RUN /bin/sh -c set -eux;     ARCH=\"$(apk --print-arch)\";     case \"${ARCH}\" in        aarch64)          ESUM='7f8c230ba505b418e4288e2b34758a6e4da32470944740e5ba0cfaae02271c22';          BINARY_URL='https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.9%2B10/OpenJDK21U-jre_aarch64_alpine-linux_hotspot_21.0.9_10.tar.gz';          ;;        x86_64)          ESUM='17aca4ecc1600f70ec88ea0f8bf3a06ba6806bdae8c96d03c07683c800f0d4e8';          BINARY_URL='https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.9%2B10/OpenJDK21U-jre_x64_alpine-linux_hotspot_21.0.9_10.tar.gz';          ;;        *)          echo \"Unsupported arch: ${ARCH}\";          exit 1;          ;;     esac;     wget -O /tmp/openjdk.tar.gz ${BINARY_URL};     wget -O /tmp/openjdk.tar.gz.sig ${BINARY_URL}.sig;     export GNUPGHOME=\"$(mktemp -d)\";     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 3B04D753C9050D9A5D343F39843C48A565F8F04B;     gpg --batch --verify /tmp/openjdk.tar.gz.sig /tmp/openjdk.tar.gz;     rm -rf \"${GNUPGHOME}\" /tmp/openjdk.tar.gz.sig;     echo \"${ESUM} */tmp/openjdk.tar.gz\" | sha256sum -c -;     mkdir -p \"$JAVA_HOME\";     tar --extract         --file /tmp/openjdk.tar.gz         --directory \"$JAVA_HOME\"         --strip-components 1         --no-same-owner     ;     rm -f /tmp/openjdk.tar.gz; # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-11-08T17:59:38Z",
+          "created_by": "RUN /bin/sh -c set -eux;     echo \"Verifying install ...\";     echo \"java --version\"; java --version;     echo \"Complete.\" # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-11-08T17:59:38Z",
+          "created_by": "COPY --chmod=755 entrypoint.sh /__cacert_entrypoint.sh # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-11-08T17:59:38Z",
+          "created_by": "ENTRYPOINT [\"/__cacert_entrypoint.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-12-29T14:37:20Z",
+          "created_by": "WORKDIR /app",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-01-07T14:25:19Z",
+          "created_by": "COPY /app/target/*.jar app.jar # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-01-07T14:25:19Z",
+          "created_by": "ENTRYPOINT [\"java\" \"-jar\" \"app.jar\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1",
+          "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984",
+          "sha256:c6974a5a45a38faf6dd7d8f37ced37c75f829723698df10788ce258bf6beb97a",
+          "sha256:bc709155484456fd652ac8135d3d8c4d040578f826d95bd3e65f1677d63c41c9",
+          "sha256:8bbd26e5bb80cf88ea0b926449672e027d876d51e97a7e6e1a272238fce04536",
+          "sha256:13e97a176d76a227f22388b3ff920237fd0d5b72d1426e97834e33a603546658",
+          "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+        ]
+      },
+      "config": {
+        "Entrypoint": [
+          "java",
+          "-jar",
+          "app.jar"
+        ],
+        "Env": [
+          "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "JAVA_HOME=/opt/java/openjdk",
+          "LANG=en_US.UTF-8",
+          "LANGUAGE=en_US:en",
+          "LC_ALL=en_US.UTF-8",
+          "JAVA_VERSION=jdk-21.0.9+10"
+        ],
+        "Labels": {
+          "com.docker.compose.project": "mini-projet-b",
+          "com.docker.compose.service": "api-gateway",
+          "com.docker.compose.version": "2.39.2"
+        },
+        "WorkingDir": "/app"
+      }
+    }
+  },
+  "Results": [
+    {
+      "Target": "api-gateway:latest (alpine 3.22.2)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2024-58251",
+          "PkgID": "busybox@1.37.0-r19",
+          "PkgName": "busybox",
+          "InstalledVersion": "1.37.0-r19",
+          "FixedVersion": "1.37.0-r20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:2d35ebdb57d9971fea0cac1582aa78935adf8058b2cc32db163c98822e5dfa1b",
+            "DiffID": "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-58251",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "In netstat in BusyBox through 1.37.0, local users can launch of networ ...",
+          "Description": "In netstat in BusyBox through 1.37.0, local users can launch of network application with an argv[0] containing an ANSI terminal escape sequence, leading to a denial of service (terminal locked up) when netstat is used by a victim.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-150"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/04/23/6",
+            "https://bugs.busybox.net/show_bug.cgi?id=15922",
+            "https://www.busybox.net",
+            "https://www.busybox.net/downloads/",
+            "https://www.cve.org/CVERecord?id=CVE-2024-58251"
+          ],
+          "PublishedDate": "2025-04-23T18:16:03.057Z",
+          "LastModifiedDate": "2025-04-29T13:52:47.47Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-46394",
+          "PkgID": "busybox@1.37.0-r19",
+          "PkgName": "busybox",
+          "InstalledVersion": "1.37.0-r19",
+          "FixedVersion": "1.37.0-r20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:2d35ebdb57d9971fea0cac1582aa78935adf8058b2cc32db163c98822e5dfa1b",
+            "DiffID": "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-46394",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hid ...",
+          "Description": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hidden from a listing through the use of terminal escape sequences.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-451"
+          ],
+          "VendorSeverity": {
+            "nvd": 1,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 3.3
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/04/23/5",
+            "http://www.openwall.com/lists/oss-security/2025/04/24/3",
+            "https://bugs.busybox.net/show_bug.cgi?id=16018",
+            "https://lists.busybox.net/pipermail/busybox/2024-July/090806.html",
+            "https://lists.busybox.net/pipermail/busybox/2024-July/090814.html",
+            "https://www.busybox.net",
+            "https://www.busybox.net/downloads/",
+            "https://www.cve.org/CVERecord?id=CVE-2025-46394",
+            "https://www.openwall.com/lists/oss-security/2025/04/23/1"
+          ],
+          "PublishedDate": "2025-04-23T16:15:48.713Z",
+          "LastModifiedDate": "2025-09-24T14:38:22.127Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-58251",
+          "PkgID": "busybox-binsh@1.37.0-r19",
+          "PkgName": "busybox-binsh",
+          "InstalledVersion": "1.37.0-r19",
+          "FixedVersion": "1.37.0-r20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:2d35ebdb57d9971fea0cac1582aa78935adf8058b2cc32db163c98822e5dfa1b",
+            "DiffID": "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-58251",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "In netstat in BusyBox through 1.37.0, local users can launch of networ ...",
+          "Description": "In netstat in BusyBox through 1.37.0, local users can launch of network application with an argv[0] containing an ANSI terminal escape sequence, leading to a denial of service (terminal locked up) when netstat is used by a victim.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-150"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/04/23/6",
+            "https://bugs.busybox.net/show_bug.cgi?id=15922",
+            "https://www.busybox.net",
+            "https://www.busybox.net/downloads/",
+            "https://www.cve.org/CVERecord?id=CVE-2024-58251"
+          ],
+          "PublishedDate": "2025-04-23T18:16:03.057Z",
+          "LastModifiedDate": "2025-04-29T13:52:47.47Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-46394",
+          "PkgID": "busybox-binsh@1.37.0-r19",
+          "PkgName": "busybox-binsh",
+          "InstalledVersion": "1.37.0-r19",
+          "FixedVersion": "1.37.0-r20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:2d35ebdb57d9971fea0cac1582aa78935adf8058b2cc32db163c98822e5dfa1b",
+            "DiffID": "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-46394",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hid ...",
+          "Description": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hidden from a listing through the use of terminal escape sequences.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-451"
+          ],
+          "VendorSeverity": {
+            "nvd": 1,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 3.3
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/04/23/5",
+            "http://www.openwall.com/lists/oss-security/2025/04/24/3",
+            "https://bugs.busybox.net/show_bug.cgi?id=16018",
+            "https://lists.busybox.net/pipermail/busybox/2024-July/090806.html",
+            "https://lists.busybox.net/pipermail/busybox/2024-July/090814.html",
+            "https://www.busybox.net",
+            "https://www.busybox.net/downloads/",
+            "https://www.cve.org/CVERecord?id=CVE-2025-46394",
+            "https://www.openwall.com/lists/oss-security/2025/04/23/1"
+          ],
+          "PublishedDate": "2025-04-23T16:15:48.713Z",
+          "LastModifiedDate": "2025-09-24T14:38:22.127Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gnupg@2.4.7-r0",
+          "PkgName": "gnupg",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gnupg@2.4.7-r0",
+          "PkgName": "gnupg",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gnupg-dirmngr@2.4.7-r0",
+          "PkgName": "gnupg-dirmngr",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gnupg-dirmngr@2.4.7-r0",
+          "PkgName": "gnupg-dirmngr",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gnupg-gpgconf@2.4.7-r0",
+          "PkgName": "gnupg-gpgconf",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gnupg-gpgconf@2.4.7-r0",
+          "PkgName": "gnupg-gpgconf",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gnupg-keyboxd@2.4.7-r0",
+          "PkgName": "gnupg-keyboxd",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gnupg-keyboxd@2.4.7-r0",
+          "PkgName": "gnupg-keyboxd",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gnupg-utils@2.4.7-r0",
+          "PkgName": "gnupg-utils",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gnupg-utils@2.4.7-r0",
+          "PkgName": "gnupg-utils",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gnupg-wks-client@2.4.7-r0",
+          "PkgName": "gnupg-wks-client",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gnupg-wks-client@2.4.7-r0",
+          "PkgName": "gnupg-wks-client",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gpg@2.4.7-r0",
+          "PkgName": "gpg",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gpg@2.4.7-r0",
+          "PkgName": "gpg",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gpg-agent@2.4.7-r0",
+          "PkgName": "gpg-agent",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gpg-agent@2.4.7-r0",
+          "PkgName": "gpg-agent",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gpg-wks-server@2.4.7-r0",
+          "PkgName": "gpg-wks-server",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gpg-wks-server@2.4.7-r0",
+          "PkgName": "gpg-wks-server",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gpgsm@2.4.7-r0",
+          "PkgName": "gpgsm",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gpgsm@2.4.7-r0",
+          "PkgName": "gpgsm",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68973",
+          "PkgID": "gpgv@2.4.7-r0",
+          "PkgName": "gpgv",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68973",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+          "Description": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-675"
+          ],
+          "VendorSeverity": {
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/29/11",
+            "https://access.redhat.com/security/cve/CVE-2025-68973",
+            "https://github.com/gpg/gnupg/blob/ff30683418695f5d2cc9e6cf8c9418e09378ebe4/g10/armor.c#L1305-L1306",
+            "https://github.com/gpg/gnupg/commit/115d138ba599328005c5321c0ef9f00355838ca9",
+            "https://github.com/gpg/gnupg/compare/gnupg-2.2.50...gnupg-2.2.51",
+            "https://gpg.fail/memcpy",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46403200",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68973",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68973",
+            "https://www.openwall.com/lists/oss-security/2025/12/28/5"
+          ],
+          "PublishedDate": "2025-12-28T17:16:01.5Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.803Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gpgv@2.4.7-r0",
+          "PkgName": "gpgv",
+          "InstalledVersion": "2.4.7-r0",
+          "FixedVersion": "2.4.9-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-02T21:15:56.583Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-64720",
+          "PkgID": "libpng@1.6.47-r0",
+          "PkgName": "libpng",
+          "InstalledVersion": "1.6.47-r0",
+          "FixedVersion": "1.6.51-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-64720",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libpng: LIBPNG buffer overflow",
+          "Description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. From version 1.6.0 to before 1.6.51, an out-of-bounds read vulnerability exists in png_image_read_composite when processing palette images with PNG_FLAG_OPTIMIZE_ALPHA enabled. The palette compositing code in png_init_read_transformations incorrectly applies background compositing during premultiplication, violating the invariant component ≤ alpha × 257 required by the simplified PNG API. This issue has been patched in version 1.6.51.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "photon": 3,
+            "redhat": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:H",
+              "V3Score": 7.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-64720",
+            "https://github.com/pnggroup/libpng/commit/08da33b4c88cfcd36e5a706558a8d7e0e4773643",
+            "https://github.com/pnggroup/libpng/commit/08da33b4c88cfcd36e5a706558a8d7e0e4773643 (v1.6.51)",
+            "https://github.com/pnggroup/libpng/issues/686",
+            "https://github.com/pnggroup/libpng/pull/751",
+            "https://github.com/pnggroup/libpng/security/advisories/GHSA-hfc7-ph9c-wcww",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-64720",
+            "https://ubuntu.com/security/notices/USN-7924-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-64720",
+            "https://www.openwall.com/lists/oss-security/2025/11/22/1"
+          ],
+          "PublishedDate": "2025-11-25T00:15:47.46Z",
+          "LastModifiedDate": "2025-11-26T18:35:18.253Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-65018",
+          "PkgID": "libpng@1.6.47-r0",
+          "PkgName": "libpng",
+          "InstalledVersion": "1.6.47-r0",
+          "FixedVersion": "1.6.51-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-65018",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libpng: LIBPNG heap buffer overflow",
+          "Description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. From version 1.6.0 to before 1.6.51, there is a heap buffer overflow vulnerability in the libpng simplified API function png_image_finish_read when processing 16-bit interlaced PNGs with 8-bit output format. Attacker-crafted interlaced PNG files cause heap writes beyond allocated buffer bounds. This issue has been patched in version 1.6.51.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-122",
+            "CWE-787"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "photon": 3,
+            "redhat": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H",
+              "V3Score": 7.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-65018",
+            "https://github.com/pnggroup/libpng/commit/16b5e3823918840aae65c0a6da57c78a5a496a4d",
+            "https://github.com/pnggroup/libpng/commit/16b5e3823918840aae65c0a6da57c78a5a496a4d (v1.6.51)",
+            "https://github.com/pnggroup/libpng/commit/218612ddd6b17944e21eda56caf8b4bf7779d1ea",
+            "https://github.com/pnggroup/libpng/commit/218612ddd6b17944e21eda56caf8b4bf7779d1ea (v1.6.51)",
+            "https://github.com/pnggroup/libpng/issues/755",
+            "https://github.com/pnggroup/libpng/pull/757",
+            "https://github.com/pnggroup/libpng/security/advisories/GHSA-7wv6-48j4-hj3g",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-65018",
+            "https://ubuntu.com/security/notices/USN-7924-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-65018",
+            "https://www.openwall.com/lists/oss-security/2025/11/22/1"
+          ],
+          "PublishedDate": "2025-11-25T00:15:47.61Z",
+          "LastModifiedDate": "2025-11-26T18:34:53.65Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-66293",
+          "PkgID": "libpng@1.6.47-r0",
+          "PkgName": "libpng",
+          "InstalledVersion": "1.6.47-r0",
+          "FixedVersion": "1.6.53-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-66293",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libpng: LIBPNG out-of-bounds read in png_image_read_composite",
+          "Description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to 1.6.52, an out-of-bounds read vulnerability in libpng's simplified API allows reading up to 1012 bytes beyond the png_sRGB_base[512] array when processing valid palette PNG images with partial transparency and gamma correction. The PNG files that trigger this vulnerability are valid per the PNG specification; the bug is in libpng's internal state management. Upgrade to libpng 1.6.52 or later.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:H",
+              "V3Score": 7.1
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/12/03/6",
+            "http://www.openwall.com/lists/oss-security/2025/12/03/7",
+            "http://www.openwall.com/lists/oss-security/2025/12/03/8",
+            "https://access.redhat.com/security/cve/CVE-2025-66293",
+            "https://github.com/pnggroup/libpng/commit/788a624d7387a758ffd5c7ab010f1870dea753a1",
+            "https://github.com/pnggroup/libpng/commit/a05a48b756de63e3234ea6b3b938b8f5f862484a",
+            "https://github.com/pnggroup/libpng/issues/764",
+            "https://github.com/pnggroup/libpng/security/advisories/GHSA-9mpm-9pxh-mg4f",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-66293",
+            "https://www.cve.org/CVERecord?id=CVE-2025-66293"
+          ],
+          "PublishedDate": "2025-12-03T21:15:53.06Z",
+          "LastModifiedDate": "2025-12-16T19:12:50.35Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-64505",
+          "PkgID": "libpng@1.6.47-r0",
+          "PkgName": "libpng",
+          "InstalledVersion": "1.6.47-r0",
+          "FixedVersion": "1.6.51-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-64505",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libpng: LIBPNG heap buffer overflow via malformed palette index",
+          "Description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. Prior to version 1.6.51, a heap buffer over-read vulnerability exists in libpng's png_do_quantize function when processing PNG files with malformed palette indices. The vulnerability occurs when palette_lookup array bounds are not validated against externally-supplied image data, allowing an attacker to craft a PNG file with out-of-range palette indices that trigger out-of-bounds memory access. This issue has been patched in version 1.6.51.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "photon": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:L",
+              "V3Score": 4.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-64505",
+            "https://github.com/pnggroup/libpng/commit/6a528eb5fd0dd7f6de1c39d30de0e41473431c37",
+            "https://github.com/pnggroup/libpng/commit/6a528eb5fd0dd7f6de1c39d30de0e41473431c37 (v1.6.51)",
+            "https://github.com/pnggroup/libpng/pull/748",
+            "https://github.com/pnggroup/libpng/security/advisories/GHSA-4952-h5wq-4m42",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-64505",
+            "https://ubuntu.com/security/notices/USN-7924-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-64505",
+            "https://www.openwall.com/lists/oss-security/2025/11/22/1"
+          ],
+          "PublishedDate": "2025-11-25T00:15:47.133Z",
+          "LastModifiedDate": "2025-11-26T18:28:32.22Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-64506",
+          "PkgID": "libpng@1.6.47-r0",
+          "PkgName": "libpng",
+          "InstalledVersion": "1.6.47-r0",
+          "FixedVersion": "1.6.51-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:93902f35c01693819c190c354786cbb573f4ef49a5b865d6c34f2197839cc3e4",
+            "DiffID": "sha256:409a60df3c0b21d35d20def6d1db34be40c7ac8c4fd803d4a929f31509ae8984"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-64506",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libpng: LIBPNG heap buffer over-read",
+          "Description": "LIBPNG is a reference library for use in applications that read, create, and manipulate PNG (Portable Network Graphics) raster image files. From version 1.6.0 to before 1.6.51, a heap buffer over-read vulnerability exists in libpng's png_write_image_8bit function when processing 8-bit images through the simplified write API with convert_to_8bit enabled. The vulnerability affects 8-bit grayscale+alpha, RGB/RGBA, and images with incomplete row data. A conditional guard incorrectly allows 8-bit input to enter code expecting 16-bit input, causing reads up to 2 bytes beyond allocated buffer boundaries. This issue has been patched in version 1.6.51.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "photon": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-64506",
+            "https://github.com/pnggroup/libpng/commit/2bd84c019c300b78e811743fbcddb67c9d9bf821",
+            "https://github.com/pnggroup/libpng/commit/2bd84c019c300b78e811743fbcddb67c9d9bf821 (v1.6.51)",
+            "https://github.com/pnggroup/libpng/pull/749",
+            "https://github.com/pnggroup/libpng/security/advisories/GHSA-qpr4-xm66-hww6",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-64506",
+            "https://ubuntu.com/security/notices/USN-7924-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-64506",
+            "https://www.openwall.com/lists/oss-security/2025/11/22/1"
+          ],
+          "PublishedDate": "2025-11-25T00:15:47.3Z",
+          "LastModifiedDate": "2025-11-26T18:34:38.24Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-58251",
+          "PkgID": "ssl_client@1.37.0-r19",
+          "PkgName": "ssl_client",
+          "InstalledVersion": "1.37.0-r19",
+          "FixedVersion": "1.37.0-r20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:2d35ebdb57d9971fea0cac1582aa78935adf8058b2cc32db163c98822e5dfa1b",
+            "DiffID": "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-58251",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "In netstat in BusyBox through 1.37.0, local users can launch of networ ...",
+          "Description": "In netstat in BusyBox through 1.37.0, local users can launch of network application with an argv[0] containing an ANSI terminal escape sequence, leading to a denial of service (terminal locked up) when netstat is used by a victim.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-150"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/04/23/6",
+            "https://bugs.busybox.net/show_bug.cgi?id=15922",
+            "https://www.busybox.net",
+            "https://www.busybox.net/downloads/",
+            "https://www.cve.org/CVERecord?id=CVE-2024-58251"
+          ],
+          "PublishedDate": "2025-04-23T18:16:03.057Z",
+          "LastModifiedDate": "2025-04-29T13:52:47.47Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-46394",
+          "PkgID": "ssl_client@1.37.0-r19",
+          "PkgName": "ssl_client",
+          "InstalledVersion": "1.37.0-r19",
+          "FixedVersion": "1.37.0-r20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:2d35ebdb57d9971fea0cac1582aa78935adf8058b2cc32db163c98822e5dfa1b",
+            "DiffID": "sha256:256f393e029fa2063d8c93720da36a74a032bed3355a2bc3e313ad12f8bde9d1"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-46394",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hid ...",
+          "Description": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hidden from a listing through the use of terminal escape sequences.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-451"
+          ],
+          "VendorSeverity": {
+            "nvd": 1,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 3.3
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/04/23/5",
+            "http://www.openwall.com/lists/oss-security/2025/04/24/3",
+            "https://bugs.busybox.net/show_bug.cgi?id=16018",
+            "https://lists.busybox.net/pipermail/busybox/2024-July/090806.html",
+            "https://lists.busybox.net/pipermail/busybox/2024-July/090814.html",
+            "https://www.busybox.net",
+            "https://www.busybox.net/downloads/",
+            "https://www.cve.org/CVERecord?id=CVE-2025-46394",
+            "https://www.openwall.com/lists/oss-security/2025/04/23/1"
+          ],
+          "PublishedDate": "2025-04-23T16:15:48.713Z",
+          "LastModifiedDate": "2025-09-24T14:38:22.127Z"
+        }
+      ]
+    },
+    {
+      "Target": "Java",
+      "Class": "lang-pkgs",
+      "Type": "jar",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2024-12798",
+          "PkgName": "ch.qos.logback:logback-core",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/logback-core-1.4.14.jar",
+          "InstalledVersion": "1.4.14",
+          "FixedVersion": "1.5.13, 1.3.15",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-12798",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "logback-core: arbitrary code execution via JaninoEventEvaluator",
+          "Description": "ACE vulnerability in JaninoEventEvaluator  by QOS.CH logback-core\n      upto including version 0.1 to 1.3.14 and 1.4.0 to 1.5.12 in Java applications allows\n      attacker to execute arbitrary code by compromising an existing\n      logback configuration file or by injecting an environment variable\n      before program execution.\n\n\n\n\n\nMalicious logback configuration files can allow the attacker to execute \narbitrary code using the JaninoEventEvaluator extension.\n\n\n\nA successful attack requires the user to have write access to a \nconfiguration file. Alternatively, the attacker could inject a malicious \nenvironment variable pointing to a malicious configuration file. In both \ncases, the attack requires existing privilege.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-917"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:H/A:L",
+              "V3Score": 5.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-12798",
+            "https://github.com/qos-ch/logback",
+            "https://github.com/qos-ch/logback/commit/2cb6d520df7592ef1c3a198f1b5df3c10c93e183",
+            "https://logback.qos.ch/news.html#1.3.15",
+            "https://logback.qos.ch/news.html#1.5.13",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-12798",
+            "https://www.cve.org/CVERecord?id=CVE-2024-12798"
+          ],
+          "PublishedDate": "2024-12-19T16:15:07.557Z",
+          "LastModifiedDate": "2025-01-03T14:15:24.37Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-11226",
+          "PkgName": "ch.qos.logback:logback-core",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/logback-core-1.4.14.jar",
+          "InstalledVersion": "1.4.14",
+          "FixedVersion": "1.5.19, 1.3.16",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-11226",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "ch.qos.logback/logback-core: Conditional abitrary code execution in logback-core",
+          "Description": "ACE vulnerability in conditional configuration file processing  by QOS.CH logback-core up to and including version 1.5.18 in Java applications, allows an attacker to execute arbitrary code by compromising an existing logback configuration file or by injecting an environment variable before program execution.\n\n\n\nA successful attack requires the presence of Janino library and Spring Framework to be present on the user's class path. In addition, the attacker must  have write access to a \nconfiguration file. Alternatively, the attacker could inject a malicious \nenvironment variable pointing to a malicious configuration file. In both \ncases, the attack requires existing privilege.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:L",
+              "V3Score": 6.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-11226",
+            "https://github.com/qos-ch/logback",
+            "https://github.com/qos-ch/logback/commit/61f6a2544f36b3016e0efd434ee21f19269f1df7",
+            "https://github.com/qos-ch/logback/issues/974",
+            "https://github.com/qos-ch/logback/releases/tag/v_1.5.19",
+            "https://logback.qos.ch/news.html#1.3.16",
+            "https://logback.qos.ch/news.html#1.5.19",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-11226",
+            "https://www.cve.org/CVERecord?id=CVE-2025-11226"
+          ],
+          "PublishedDate": "2025-10-01T08:15:31.25Z",
+          "LastModifiedDate": "2025-10-31T15:15:41.197Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-12801",
+          "PkgName": "ch.qos.logback:logback-core",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/logback-core-1.4.14.jar",
+          "InstalledVersion": "1.4.14",
+          "FixedVersion": "1.5.13, 1.3.15",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-12801",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "logback-core: SaxEventRecorder vulnerable to Server-Side Request Forgery (SSRF) attacks",
+          "Description": "Server-Side Request Forgery (SSRF) in SaxEventRecorder by QOS.CH logback version 0.1 to 1.3.14 and 1.4.0 to 1.5.12  on the Java platform, allows an attacker to \nforge requests by compromising logback configuration files in XML.\n\n\n\nThe attacks involves the modification of DOCTYPE declaration in  XML configuration files.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-918"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1,
+            "redhat": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 3.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-12801",
+            "https://github.com/qos-ch/logback",
+            "https://github.com/qos-ch/logback/commit/5f05041cba4c4ac0a62748c5c527a2da48999f2d",
+            "https://logback.qos.ch/news.html#1.3.15",
+            "https://logback.qos.ch/news.html#1.5.13",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-12801",
+            "https://www.cve.org/CVERecord?id=CVE-2024-12801"
+          ],
+          "PublishedDate": "2024-12-19T17:15:08.93Z",
+          "LastModifiedDate": "2025-01-03T14:15:24.5Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-52428",
+          "PkgName": "com.nimbusds:nimbus-jose-jwt",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/nimbus-jose-jwt-9.24.4.jar",
+          "InstalledVersion": "9.24.4",
+          "FixedVersion": "9.37.2",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-52428",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "nimbus-jose-jwt: large JWE p2c header value causes Denial of Service",
+          "Description": "In Connect2id Nimbus JOSE+JWT before 9.37.2, an attacker can cause a denial of service (resource consumption) via a large JWE p2c header value (aka iteration count) for the PasswordBasedDecrypter (PBKDF2) component.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2023-52428",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt/commits/3b3b77e",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt/issues/526",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt/issues/526/",
+            "https://connect2id.com/products/nimbus-jose-jwt",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-52428",
+            "https://www.cve.org/CVERecord?id=CVE-2023-52428"
+          ],
+          "PublishedDate": "2024-02-11T05:15:08.383Z",
+          "LastModifiedDate": "2024-11-21T08:39:43.963Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-53864",
+          "PkgName": "com.nimbusds:nimbus-jose-jwt",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/nimbus-jose-jwt-9.24.4.jar",
+          "InstalledVersion": "9.24.4",
+          "FixedVersion": "10.0.2, 9.37.4",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-53864",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "com.nimbusds/nimbus-jose-jwt: Uncontrolled recursion in Connect2id Nimbus JOSE + JWT",
+          "Description": "Connect2id Nimbus JOSE + JWT 10.0.x before 10.0.2 and 9.37.x before 9.37.4 allows a remote attacker to cause a denial of service via a deeply nested JSON object supplied in a JWT claim set, because of uncontrolled recursion. NOTE: this is independent of the Gson 2.11.0 issue because the Connect2id product could have checked the JSON object nesting depth, regardless of what limits (if any) were imposed by Gson.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-674"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L",
+              "V3Score": 5.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L",
+              "V3Score": 5.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-53864",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt/commits/f7fb882cc08f027c9ceb874acec3b51c6222861c",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt/issues/583/stackoverflowerror-due-to-deeply-nested",
+            "https://bitbucket.org/connect2id/nimbus-jose-jwt/issues/593/back-port-cve-2025-53864-fix-to-9x-branch",
+            "https://github.com/google/gson/commit/1039427ff0100293dd3cf967a53a55282c0fef6b",
+            "https://github.com/google/gson/compare/gson-parent-2.11.0...gson-parent-2.12.0",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-53864",
+            "https://www.cve.org/CVERecord?id=CVE-2025-53864"
+          ],
+          "PublishedDate": "2025-07-11T03:16:03.563Z",
+          "LastModifiedDate": "2025-09-23T19:15:39.81Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-58057",
+          "PkgName": "io.netty:netty-codec",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-codec-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.1.125.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-58057",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty-codec: netty-codec-compression: Netty's BrotliDecoder is vulnerable to DoS via zip bomb style attack",
+          "Description": "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers \u0026 clients. In netty-codec-compression versions 4.1.124.Final and below, and netty-codec versions 4.2.4.Final and below, when supplied with specially crafted input, BrotliDecoder and certain other decompression decoders will allocate a large number of reachable byte buffers, which can lead to denial of service. BrotliDecoder.decompress has no limit in how often it calls pull, decompressing data 64K bytes at a time. The buffers are saved in the output list, and remain reachable until OOM is hit. This is fixed in versions 4.1.125.Final of netty-codec and 4.2.5.Final of netty-codec-compression.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-409"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-58057",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/9d804c54ce962408ae6418255a83a13924f7145d",
+            "https://github.com/netty/netty/commit/9d804c54ce962408ae6418255a83a13924f7145d (netty-4.2.5.Final)",
+            "https://github.com/netty/netty/security/advisories/GHSA-3p8m-j85q-pgmj",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-58057",
+            "https://ubuntu.com/security/notices/USN-7918-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-58057"
+          ],
+          "PublishedDate": "2025-09-04T10:42:32.18Z",
+          "LastModifiedDate": "2025-09-08T16:45:55.143Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-29025",
+          "PkgName": "io.netty:netty-codec-http",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-codec-http-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.1.108.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-29025",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty-codec-http: Allocation of Resources Without Limits or Throttling",
+          "Description": "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers \u0026 clients. The `HttpPostRequestDecoder` can be tricked to accumulate data. While the decoder can store items on the disk if configured so, there are no limits to the number of fields the form can have, an attacher can send a chunked post consisting of many small fields that will be accumulated in the `bodyListHttpData` list. The decoder cumulates bytes in the `undecodedChunk` buffer until it can decode a field, this field can cumulate data without limits. This vulnerability is fixed in 4.1.108.Final.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-29025",
+            "https://gist.github.com/vietj/f558b8ea81ec6505f1e9a6ca283c9ae3",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/0d0c6ed782d13d423586ad0c71737b2c7d02058c",
+            "https://github.com/netty/netty/commit/0d0c6ed782d13d423586ad0c71737b2c7d02058c (netty-4.1.108.Final)",
+            "https://github.com/netty/netty/security/advisories/GHSA-5jpm-x58v-624v",
+            "https://github.com/vietj/netty/tree/post-request-decoder",
+            "https://lists.debian.org/debian-lts-announce/2024/06/msg00015.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-29025",
+            "https://security.snyk.io/vuln/SNYK-JAVA-IONETTY-6483812",
+            "https://ubuntu.com/security/notices/USN-7284-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-29025"
+          ],
+          "PublishedDate": "2024-03-25T20:15:08.797Z",
+          "LastModifiedDate": "2025-09-19T15:10:53.74Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-67735",
+          "PkgName": "io.netty:netty-codec-http",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-codec-http-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.2.8.Final, 4.1.129.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-67735",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty-codec-http: Netty (netty-codec-http): Request Smuggling via CRLF Injection",
+          "Description": "Netty is an asynchronous, event-driven network application framework. In versions prior to 4.1.129.Final and 4.2.8.Final, the `io.netty.handler.codec.http.HttpRequestEncoder` has a CRLF injection with the request URI when constructing a request. This leads to request smuggling when `HttpRequestEncoder` is used without proper sanitization of the URI. Any application / framework using `HttpRequestEncoder` can be subject to be abused to perform request smuggling using CRLF injection. Versions 4.1.129.Final and 4.2.8.Final fix the issue.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-93"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 6.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-67735",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/77e81f1e5944d98b3acf887d3aa443b252752e94",
+            "https://github.com/netty/netty/security/advisories/GHSA-84h7-rjj3-6jx4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-67735",
+            "https://www.cve.org/CVERecord?id=CVE-2025-67735"
+          ],
+          "PublishedDate": "2025-12-16T01:15:52.367Z",
+          "LastModifiedDate": "2026-01-02T18:50:23.313Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-58056",
+          "PkgName": "io.netty:netty-codec-http",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-codec-http-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.1.125.Final, 4.2.5.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-58056",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty-codec-http: Netty is vulnerable to request smuggling due to incorrect parsing of chunk extensions",
+          "Description": "Netty is an asynchronous event-driven network application framework for development of maintainable high performance protocol servers and clients. In versions 4.1.124.Final, and 4.2.0.Alpha3 through 4.2.4.Final, Netty incorrectly accepts standalone newline characters (LF) as a chunk-size line terminator, regardless of a preceding carriage return (CR), instead of requiring CRLF per HTTP/1.1 standards. When combined with reverse proxies that parse LF differently (treating it as part of the chunk extension), attackers can craft requests that the proxy sees as one request but Netty processes as two, enabling request smuggling attacks. This is fixed in versions 4.1.125.Final and 4.2.5.Final.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-444"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1,
+            "nvd": 3,
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-58056",
+            "https://datatracker.ietf.org/doc/html/rfc9112#name-chunked-transfer-coding",
+            "https://github.com/JLLeitschuh/unCVEed/issues/1",
+            "https://github.com/github/advisory-database/pull/6092",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/edb55fd8e0a3bcbd85881e423464f585183d1284",
+            "https://github.com/netty/netty/issues/15522",
+            "https://github.com/netty/netty/pull/15611",
+            "https://github.com/netty/netty/security/advisories/GHSA-fghv-69vj-qj49",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-58056",
+            "https://ubuntu.com/security/notices/USN-7918-1",
+            "https://w4ke.info/2025/06/18/funky-chunks.html",
+            "https://www.cve.org/CVERecord?id=CVE-2025-58056"
+          ],
+          "PublishedDate": "2025-09-03T21:15:33.07Z",
+          "LastModifiedDate": "2025-09-08T16:46:36.847Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-55163",
+          "PkgName": "io.netty:netty-codec-http2",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-codec-http2-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.2.4.Final, 4.1.124.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-55163",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty: netty-codec-http2: Netty MadeYouReset HTTP/2 DDoS Vulnerability",
+          "Description": "Netty is an asynchronous, event-driven network application framework. Prior to versions 4.1.124.Final and 4.2.4.Final, Netty is vulnerable to MadeYouReset DDoS. This is a logical vulnerability in the HTTP/2 protocol, that uses malformed HTTP/2 control frames in order to break the max concurrent streams limit - which results in resource exhaustion and distributed denial of service. This issue has been patched in versions 4.1.124.Final and 4.2.4.Final.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/08/16/1",
+            "https://access.redhat.com/security/cve/CVE-2025-55163",
+            "https://github.com/grpc/grpc-java/commit/6462ef9a11980e168c21d90bbc7245c728fd1a7a",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/be53dc3c9acd9af2e20d0c3c07cd77115a594cf1",
+            "https://github.com/netty/netty/security/advisories/GHSA-prj3-ccx8-p6x4",
+            "https://kb.cert.org/vuls/id/767506",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-55163",
+            "https://www.cve.org/CVERecord?id=CVE-2025-55163",
+            "https://www.kb.cert.org/vuls/id/767506"
+          ],
+          "PublishedDate": "2025-08-13T15:15:39.39Z",
+          "LastModifiedDate": "2025-11-04T22:16:30.293Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-47535",
+          "PkgName": "io.netty:netty-common",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-common-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.1.115.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-47535",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty: Denial of Service attack on windows app using Netty",
+          "Description": "Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers \u0026 clients. An unsafe reading of environment file could potentially cause a denial of service in Netty. When loaded on an Windows application, Netty attempts to load a file that does not exist. If an attacker creates such a large file, the Netty application crashes. This vulnerability is fixed in 4.1.115.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-47535",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/fbf7a704a82e7449b48bd0bbb679f5661c6d61a3",
+            "https://github.com/netty/netty/security/advisories/GHSA-xq3w-v528-46rv",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-47535",
+            "https://www.cve.org/CVERecord?id=CVE-2024-47535"
+          ],
+          "PublishedDate": "2024-11-12T16:15:22.237Z",
+          "LastModifiedDate": "2025-09-05T14:00:07.22Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-25193",
+          "PkgName": "io.netty:netty-common",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-common-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.1.118.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-25193",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "netty: Denial of Service attack on windows app using Netty",
+          "Description": "Netty, an asynchronous, event-driven network application framework, has a vulnerability in versions up to and including 4.1.118.Final. An unsafe reading of environment file could potentially cause a denial of service in Netty. When loaded on an Windows application, Netty attempts to load a file that does not exist. If an attacker creates such a large file, the Netty application crash. A similar issue was previously reported as CVE-2024-47535. This issue was fixed, but the fix was incomplete in that null-bytes were not counted against the input limit. Commit d1fbda62d3a47835d3fb35db8bd42ecc205a5386 contains an updated fix.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-25193",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/d1fbda62d3a47835d3fb35db8bd42ecc205a5386",
+            "https://github.com/netty/netty/security/advisories/GHSA-389x-839f-4rhx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-25193",
+            "https://security.netapp.com/advisory/ntap-20250221-0006",
+            "https://security.netapp.com/advisory/ntap-20250221-0006/",
+            "https://www.cve.org/CVERecord?id=CVE-2025-25193"
+          ],
+          "PublishedDate": "2025-02-10T22:15:38.45Z",
+          "LastModifiedDate": "2025-06-11T15:36:22.693Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-24970",
+          "PkgName": "io.netty:netty-handler",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/netty-handler-4.1.107.Final.jar",
+          "InstalledVersion": "4.1.107.Final",
+          "FixedVersion": "4.1.118.Final",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-24970",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "io.netty:netty-handler: SslHandler doesn't correctly validate packets which can lead to native crash when using native SSLEngine",
+          "Description": "Netty, an asynchronous, event-driven network application framework, has a vulnerability starting in version 4.1.91.Final and prior to version 4.1.118.Final. When a special crafted packet is received via SslHandler it doesn't correctly handle validation of such a packet in all cases which can lead to a native crash. Version 4.1.118.Final contains a patch. As workaround its possible to either disable the usage of the native SSLEngine or change the code manually.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-24970",
+            "https://github.com/netty/netty",
+            "https://github.com/netty/netty/commit/87f40725155b2f89adfde68c7732f97c153676c4",
+            "https://github.com/netty/netty/security/advisories/GHSA-4g8c-wm8x-jfhw",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-24970",
+            "https://security.netapp.com/advisory/ntap-20250221-0005",
+            "https://security.netapp.com/advisory/ntap-20250221-0005/",
+            "https://www.cve.org/CVERecord?id=CVE-2025-24970",
+            "https://www.vicarius.io/vsociety/posts/cve-2025-24970-netty-vulnerability-detection",
+            "https://www.vicarius.io/vsociety/posts/cve-2025-24970-netty-vulnerability-mitigation"
+          ],
+          "PublishedDate": "2025-02-10T22:15:38.057Z",
+          "LastModifiedDate": "2025-09-05T17:20:12.26Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-22227",
+          "PkgName": "io.projectreactor.netty:reactor-netty-http",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/reactor-netty-http-1.1.17.jar",
+          "InstalledVersion": "1.1.17",
+          "FixedVersion": "1.3.0-M5, 1.2.8",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22227",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "io.projectreactor.netty/reactor-netty: Reactor Netty Credential Leak via Redirects",
+          "Description": "In some specific scenarios with chained redirects, Reactor Netty HTTP client leaks credentials. In order for this to happen, the HTTP client must have been explicitly configured to follow redirects.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-200"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+              "V3Score": 6.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-22227",
+            "https://github.com/reactor/reactor-netty",
+            "https://github.com/reactor/reactor-netty/commit/522892307ea89bf24fe634e8bfea35728c9bf411",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-22227",
+            "https://spring.io/security/cve-2025-22227",
+            "https://www.cve.org/CVERecord?id=CVE-2025-22227"
+          ],
+          "PublishedDate": "2025-07-16T10:15:27.787Z",
+          "LastModifiedDate": "2025-07-16T15:15:25.057Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-29857",
+          "PkgName": "org.bouncycastle:bcprov-jdk18on",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/bcprov-jdk18on-1.74.jar",
+          "InstalledVersion": "1.74",
+          "FixedVersion": "1.78",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-29857",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.bouncycastle: Importing an EC certificate with crafted F2m parameters may lead to Denial of Service",
+          "Description": "An issue was discovered in ECCurve.java and ECCurve.cs in Bouncy Castle Java (BC Java) before 1.78, BC Java LTS before 2.73.6, BC-FJA before 1.0.2.5, and BC C# .Net before 2.3.1. Importing an EC certificate with crafted F2m parameters can lead to excessive CPU consumption during the evaluation of the curve parameters.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-29857",
+            "https://github.com/bcgit/bc-csharp/commit/56daa6eac526f165416d17f661422d60de0dfd63",
+            "https://github.com/bcgit/bc-csharp/wiki/CVE%E2%80%902024%E2%80%9029857",
+            "https://github.com/bcgit/bc-java/commit/efc498ca4caa340ac2fe11f2efee06c1a294501f",
+            "https://github.com/bcgit/bc-java/commit/fee80dd230e7fba132d03a34f1dd1d6aae0d0281",
+            "https://github.com/bcgit/bc-java/wiki/CVE%E2%80%902024%E2%80%9029857",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-29857",
+            "https://security.netapp.com/advisory/ntap-20241206-0008",
+            "https://security.netapp.com/advisory/ntap-20241206-0008/",
+            "https://www.bouncycastle.org/latest_releases.html",
+            "https://www.cve.org/CVERecord?id=CVE-2024-29857"
+          ],
+          "PublishedDate": "2024-05-14T15:17:02.97Z",
+          "LastModifiedDate": "2024-12-06T14:15:20.263Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-30171",
+          "PkgName": "org.bouncycastle:bcprov-jdk18on",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/bcprov-jdk18on-1.74.jar",
+          "InstalledVersion": "1.74",
+          "FixedVersion": "1.78",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-30171",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "bc-java: BouncyCastle vulnerable to a timing variant of Bleichenbacher (Marvin Attack)",
+          "Description": "An issue was discovered in Bouncy Castle Java TLS API and JSSE Provider before 1.78. Timing-based leakage may occur in RSA based handshakes because of exception processing.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-203"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-30171",
+            "https://github.com/bcgit/bc-csharp/commit/c984b8bfd8544dfc55dba91a02cbbbb9c580c217",
+            "https://github.com/bcgit/bc-csharp/wiki/CVE%E2%80%902024%E2%80%9030171",
+            "https://github.com/bcgit/bc-java/commit/d7d5e735abd64bf0f413f54fd9e495fc02400fb0",
+            "https://github.com/bcgit/bc-java/commit/e0569dcb1dea9d421d84fc4c5c5688fe101afa2d",
+            "https://github.com/bcgit/bc-java/wiki/CVE%E2%80%902024%E2%80%9030171",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-30171",
+            "https://people.redhat.com/~hkario/marvin/",
+            "https://security.netapp.com/advisory/ntap-20240614-0008",
+            "https://security.netapp.com/advisory/ntap-20240614-0008/",
+            "https://www.bouncycastle.org/latest_releases.html",
+            "https://www.cve.org/CVERecord?id=CVE-2024-30171"
+          ],
+          "PublishedDate": "2024-05-14T15:21:52.69Z",
+          "LastModifiedDate": "2024-11-21T09:11:21.59Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-30172",
+          "PkgName": "org.bouncycastle:bcprov-jdk18on",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/bcprov-jdk18on-1.74.jar",
+          "InstalledVersion": "1.74",
+          "FixedVersion": "1.78",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-30172",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.bouncycastle:bcprov-jdk18on: Infinite loop in ED25519 verification in the ScalarUtil class",
+          "Description": "An issue was discovered in Bouncy Castle Java Cryptography APIs before 1.78. An Ed25519 verification code infinite loop can occur via a crafted signature and public key.",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-30172",
+            "https://github.com/bcgit/bc-csharp/wiki/CVE%E2%80%902024%E2%80%9030172",
+            "https://github.com/bcgit/bc-java/commit/1b9fd9b545e691bfb3941a9f6a797660c8860f02",
+            "https://github.com/bcgit/bc-java/commit/9c165791b68a204678b48ec11e4e579754c2ea49",
+            "https://github.com/bcgit/bc-java/commit/ebe1c75579170072dc59b8dee2b55ce31663178f",
+            "https://github.com/bcgit/bc-java/wiki/CVE%E2%80%902024%E2%80%9030172",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-30172",
+            "https://security.netapp.com/advisory/ntap-20240614-0007",
+            "https://security.netapp.com/advisory/ntap-20240614-0007/",
+            "https://www.bouncycastle.org/latest_releases.html",
+            "https://www.cve.org/CVERecord?id=CVE-2024-30172"
+          ],
+          "PublishedDate": "2024-05-14T15:21:53.02Z",
+          "LastModifiedDate": "2024-11-21T09:11:21.817Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-34447",
+          "PkgName": "org.bouncycastle:bcprov-jdk18on",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/bcprov-jdk18on-1.74.jar",
+          "InstalledVersion": "1.74",
+          "FixedVersion": "1.78",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-34447",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.bouncycastle: Use of Incorrectly-Resolved Name or Reference",
+          "Description": "An issue was discovered in the Bouncy Castle Crypto Package For Java before BC TLS Java 1.0.19 (ships with BC Java 1.78, BC Java (LTS) 2.73.6) and before BC FIPS TLS Java 1.0.19. When endpoint identification is enabled in the BCJSSE and an SSL socket is created without an explicit hostname (as happens with HttpsURLConnection), hostname verification could be performed against a DNS-resolved IP address in some situations, opening up a possibility of DNS poisoning.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-297"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-34447",
+            "https://github.com/bcgit/bc-java",
+            "https://github.com/bcgit/bc-java/issues/1656",
+            "https://github.com/bcgit/bc-java/wiki/CVE%E2%80%902024%E2%80%9034447",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-34447",
+            "https://security.netapp.com/advisory/ntap-20240614-0007",
+            "https://security.netapp.com/advisory/ntap-20240614-0007/",
+            "https://www.bouncycastle.org/latest_releases.html",
+            "https://www.cve.org/CVERecord?id=CVE-2024-34447"
+          ],
+          "PublishedDate": "2024-05-03T16:15:11.46Z",
+          "LastModifiedDate": "2025-06-17T20:15:30.413Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-8885",
+          "PkgName": "org.bouncycastle:bcprov-jdk18on",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/bcprov-jdk18on-1.74.jar",
+          "InstalledVersion": "1.74",
+          "FixedVersion": "1.78",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-8885",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "bouncycastle: Bouncy Castle denial of service parsing ASN.1 Object Identifiers",
+          "Description": "Allocation of Resources Without Limits or Throttling vulnerability in Legion of the Bouncy Castle Inc. BC Java bcprov on All (API modules), Legion of the Bouncy Castle Inc. BC-FJA bc-fips on All allows Excessive Allocation. This vulnerability is associated with program files  https://github.com/bcgit/bc-java/blob/main/core/src/main/java/org/bouncycastle/asn1/ASN1ObjectIdenti... https://github.com/bcgit/bc-java/blob/main/core/src/main/java/org/bouncycastle/asn1/ASN1ObjectIdentifier.Java .\n\nThis issue affects BC Java: from 1.0 through 1.77; BC-FJA: from 1.0.0 through 1.0.2.5, from 2.0.0 through 2.0.1.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-8885",
+            "https://github.com/bcgit/bc-java",
+            "https://github.com/bcgit/bc-java/blob/main/core/src/main/java/org/bouncycastle/asn1/ASN1ObjectIdentifier.java",
+            "https://github.com/bcgit/bc-java/commit/3790993df5d28f661a64439a8664343437ed3865",
+            "https://github.com/bcgit/bc-java/wiki/CVE%E2%80%902025%E2%80%908885",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-8885",
+            "https://www.cve.org/CVERecord?id=CVE-2025-8885"
+          ],
+          "PublishedDate": "2025-08-12T10:15:26.963Z",
+          "LastModifiedDate": "2025-09-12T12:15:32.69Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-22235",
+          "PkgName": "org.springframework.boot:spring-boot",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-boot-3.2.4.jar",
+          "InstalledVersion": "3.2.4",
+          "FixedVersion": "3.3.11, 3.4.5",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22235",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.springframework.boot/spring-boot: Spring Boot EndpointRequest.to() creates wrong matcher if actuator endpoint is not exposed",
+          "Description": "EndpointRequest.to() creates a matcher for null/** if the actuator endpoint, for which the EndpointRequest has been created, is disabled or not exposed.\n\nYour application may be affected by this if all the following conditions are met:\n\n  *  You use Spring Security\n  *  EndpointRequest.to() has been used in a Spring Security chain configuration\n  *  The endpoint which EndpointRequest references is disabled or not exposed via web\n  *  Your application handles requests to /null and this path needs protection\n\n\nYou are not affected if any of the following is true:\n\n  *  You don't use Spring Security\n  *  You don't use EndpointRequest.to()\n  *  The endpoint which EndpointRequest.to() refers to is enabled and is exposed\n  *  Your application does not handle requests to /null or this path does not need protection",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 7.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 7.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-22235",
+            "https://github.com/advisories/GHSA-rc42-6c7j-7h5r",
+            "https://github.com/spring-projects/spring-boot",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-22235",
+            "https://security.netapp.com/advisory/ntap-20250516-0010",
+            "https://security.netapp.com/advisory/ntap-20250516-0010/",
+            "https://spring.io/security/cve-2025-22235",
+            "https://www.cve.org/CVERecord?id=CVE-2025-22235"
+          ],
+          "PublishedDate": "2025-04-28T08:15:15.273Z",
+          "LastModifiedDate": "2025-05-16T23:15:19.6Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-41235",
+          "PkgName": "org.springframework.cloud:spring-cloud-gateway-server",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-cloud-gateway-server-4.1.0.jar",
+          "InstalledVersion": "4.1.0",
+          "FixedVersion": "4.2.3, 4.1.8, 3.1.10",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-41235",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "Spring Cloud Gateway Server Forwards Headers from Untrusted Proxies",
+          "Description": "Spring Cloud Gateway Server forwards the X-Forwarded-For and Forwarded headers from untrusted proxies.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-444"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 8.6
+            }
+          },
+          "References": [
+            "https://github.com/spring-cloud/spring-cloud-gateway",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-41235",
+            "https://spring.io/security/cve-2025-41235"
+          ],
+          "PublishedDate": "2025-05-30T06:15:26.59Z",
+          "LastModifiedDate": "2025-05-30T16:31:03.107Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38827",
+          "PkgName": "org.springframework.security:spring-security-core",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-security-core-6.2.3.jar",
+          "InstalledVersion": "6.2.3",
+          "FixedVersion": "5.7.14, 5.8.16, 6.0.14, 6.1.12, 6.2.8, 6.3.5",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38827",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "spring-security: authorization bypass for case sensitive comparisons",
+          "Description": "The usage of String.toLowerCase() and String.toUpperCase() has some Locale dependent exceptions that could potentially result in authorization rules not working properly.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-639"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 4.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 4.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-38827",
+            "https://github.com/spring-projects/spring-framework/commit/11d4272ff48b4a4dabc4b28dfbff0364a4204bc9",
+            "https://github.com/spring-projects/spring-framework/issues/33708",
+            "https://github.com/spring-projects/spring-framework/issues/34232",
+            "https://github.com/spring-projects/spring-security",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38827",
+            "https://security.netapp.com/advisory/ntap-20250124-0007",
+            "https://security.netapp.com/advisory/ntap-20250124-0007/",
+            "https://spring.io/security/cve-2024-38827",
+            "https://www.cve.org/CVERecord?id=CVE-2024-38827"
+          ],
+          "PublishedDate": "2024-12-02T15:15:11.27Z",
+          "LastModifiedDate": "2025-01-24T20:15:32.553Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-22228",
+          "PkgName": "org.springframework.security:spring-security-crypto",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-security-crypto-6.2.3.jar",
+          "InstalledVersion": "6.2.3",
+          "FixedVersion": "6.3.8, 6.4.4, 6.2.10, 6.1.14, 6.0.16, 5.8.18, 5.7.16",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22228",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "spring-security-core: Spring Security BCryptPasswordEncoder does not enforce maximum password length",
+          "Description": "BCryptPasswordEncoder.matches(CharSequence,String) will incorrectly return true for passwords larger than 72 characters as long as the first 72 characters are the same.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-287"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-22228",
+            "https://github.com/spring-projects/spring-security",
+            "https://github.com/spring-projects/spring-security/commit/46f0dc6dfc8402cd556c598fdf2d31f9d46cdbf3",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-22228",
+            "https://security.netapp.com/advisory/ntap-20250425-0009",
+            "https://security.netapp.com/advisory/ntap-20250425-0009/",
+            "https://spring.io/security/cve-2025-22228",
+            "https://www.cve.org/CVERecord?id=CVE-2025-22228"
+          ],
+          "PublishedDate": "2025-03-20T06:15:23.087Z",
+          "LastModifiedDate": "2025-04-25T23:15:16.877Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38821",
+          "PkgName": "org.springframework.security:spring-security-web",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-security-web-6.2.3.jar",
+          "InstalledVersion": "6.2.3",
+          "FixedVersion": "5.7.13, 5.8.15, 6.2.7, 6.0.13, 6.1.11, 6.3.4",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38821",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "Spring-WebFlux: Authorization Bypass of Static Resources in WebFlux Applications",
+          "Description": "Spring WebFlux applications that have Spring Security authorization rules on static resources can be bypassed under certain circumstances.\n\nFor this to impact an application, all of the following must be true:\n\n  *  It must be a WebFlux application\n  *  It must be using Spring's static resources support\n  *  It must have a non-permitAll authorization rule applied to the static resources support",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 4,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 9.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-38821",
+            "https://github.com/spring-projects/spring-security",
+            "https://github.com/spring-projects/spring-security/commit/0e257b56ce35402558a260ffa6b368982f9a7934",
+            "https://github.com/spring-projects/spring-security/commit/4ce7cde15599c0447163fd46bac616e03318bf5b",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38821",
+            "https://security.netapp.com/advisory/ntap-20250124-0006",
+            "https://security.netapp.com/advisory/ntap-20250124-0006/",
+            "https://spring.io/security/cve-2024-38821",
+            "https://www.cve.org/CVERecord?id=CVE-2024-38821"
+          ],
+          "PublishedDate": "2024-10-28T07:15:07.633Z",
+          "LastModifiedDate": "2025-01-24T20:15:32.427Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38820",
+          "PkgName": "org.springframework:spring-context",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-context-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.1.14",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38820",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "The fix for CVE-2022-22968 made disallowedFieldspatterns in DataBinder ...",
+          "Description": "The fix for CVE-2022-22968 made disallowedFields patterns in DataBinder case insensitive. However, String.toLowerCase() has some Locale dependent exceptions that could potentially result in fields not protected as expected.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-178"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/23656aebc6c7d0f9faff1080981eb4d55eff296c",
+            "https://github.com/spring-projects/spring-framework/commits/v6.2.0-RC2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38820",
+            "https://security.netapp.com/advisory/ntap-20241129-0003",
+            "https://security.netapp.com/advisory/ntap-20241129-0003/",
+            "https://spring.io/security/cve-2024-38820"
+          ],
+          "PublishedDate": "2024-10-18T06:15:03.333Z",
+          "LastModifiedDate": "2024-11-29T12:15:07.007Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-22233",
+          "PkgName": "org.springframework:spring-context",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-context-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.2.7, 6.1.20",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22233",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "CVE-2024-38820 ensured Locale-independent, lowercase conversion for bo ...",
+          "Description": "CVE-2024-38820 ensured Locale-independent, lowercase conversion for both the configured disallowedFields patterns and for request parameter names. However, there are still cases where it is possible to bypass the disallowedFields checks.\n\nAffected Spring Products and Versions\n\nSpring Framework:\n  *  6.2.0 - 6.2.6\n\n  *  6.1.0 - 6.1.19\n\n  *  6.0.0 - 6.0.27\n\n  *  5.3.0 - 5.3.42\n  *  Older, unsupported versions are also affected\n\n\n\nMitigation\n\nUsers of affected versions should upgrade to the corresponding fixed version.\n\nAffected version(s)Fix Version Availability 6.2.x\n 6.2.7\nOSS6.1.x\n 6.1.20\nOSS6.0.x\n 6.0.28\n Commercial https://enterprise.spring.io/ 5.3.x\n 5.3.43\n Commercial https://enterprise.spring.io/ \nNo further mitigation steps are necessary.\n\n\nGenerally, we recommend using a dedicated model object with properties only for data binding, or using constructor binding since constructor arguments explicitly declare what to bind together with turning off setter binding through the declarativeBinding flag. See the Model Design section in the reference documentation.\n\nFor setting binding, prefer the use of allowedFields (an explicit list) over disallowedFields.\n\nCredit\n\nThis issue was responsibly reported by the TERASOLUNA Framework Development Team from NTT DATA Group Corporation.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 3.1
+            }
+          },
+          "References": [
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/edfcc6ffb188e4614ec9b212e3208b666981851c",
+            "https://github.com/spring-projects/spring-framework/commit/ee62701f5634e904e42e218baad142cea2bcd332",
+            "https://github.com/spring-projects/spring-framework/issues/34801",
+            "https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N\u0026version=3.1",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-22233",
+            "https://spring.io/security/cve-2025-22233"
+          ],
+          "PublishedDate": "2025-05-16T20:15:22.143Z",
+          "LastModifiedDate": "2025-05-19T13:35:20.46Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-41249",
+          "PkgName": "org.springframework:spring-core",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-core-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.2.11",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-41249",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.springframework/spring-core: Spring Framework Annotation Detection Vulnerability",
+          "Description": "The Spring Framework annotation detection mechanism may not correctly resolve annotations on methods within type hierarchies with a parameterized super type with unbounded generics. This can be an issue if such annotations are used for authorization decisions.\n\nYour application may be affected by this if you are using Spring Security's @EnableMethodSecurity feature.\n\nYou are not affected by this if you are not using @EnableMethodSecurity or if you do not use security annotations on methods in generic superclasses or generic interfaces.\n\nThis CVE is published in conjunction with  CVE-2025-41248 https://spring.io/security/cve-2025-41248 .",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-285"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-41249",
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/6d710d482a6785b069e35022e81758953afc21ff",
+            "https://github.com/spring-projects/spring-framework/issues/35342",
+            "https://github.com/spring-projects/spring-framework/releases/tag/v6.2.11",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-41249",
+            "https://spring.io/security/cve-2025-41249",
+            "https://www.cve.org/CVERecord?id=CVE-2025-41249"
+          ],
+          "PublishedDate": "2025-09-16T11:15:30.887Z",
+          "LastModifiedDate": "2025-09-16T20:15:35.127Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-22262",
+          "PkgName": "org.springframework:spring-web",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-web-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "5.3.34, 6.0.19, 6.1.6",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-22262",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "springframework: URL Parsing with Host Validation",
+          "Description": "Applications that use UriComponentsBuilder to parse an externally provided URL (e.g. through a query parameter) AND perform validation checks on the host of the parsed URL may be vulnerable to a  open redirect https://cwe.mitre.org/data/definitions/601.html  attack or to a SSRF attack if the URL is used after passing validation checks.\n\nThis is the same as  CVE-2024-22259 https://spring.io/security/cve-2024-22259  and  CVE-2024-22243 https://spring.io/security/cve-2024-22243 , but with different input.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-601",
+            "CWE-918"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V3Score": 8.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V3Score": 8.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-22262",
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/blob/main/spring-web/src/main/java/org/springframework/web/util/UriComponentsBuilder.java",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-22262",
+            "https://security.netapp.com/advisory/ntap-20240524-0003",
+            "https://security.netapp.com/advisory/ntap-20240524-0003/",
+            "https://spring.io/security/cve-2024-22262",
+            "https://www.cve.org/CVERecord?id=CVE-2024-22262"
+          ],
+          "PublishedDate": "2024-04-16T06:15:46.27Z",
+          "LastModifiedDate": "2025-02-13T18:16:47.98Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38809",
+          "PkgName": "org.springframework:spring-web",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-web-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "5.3.38, 6.0.23, 6.1.12",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38809",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.springframework:spring-web: Spring Framework DoS via conditional HTTP request",
+          "Description": "Applications that parse ETags from \"If-Match\" or \"If-None-Match\" request headers are vulnerable to DoS attack.\n\nUsers of affected versions should upgrade to the corresponding fixed version.\n\nUsers of older, unsupported versions could enforce a size limit on \"If-Match\" and \"If-None-Match\" headers, e.g. through a Filter.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "http://github.com/spring-projects/spring-framework",
+            "https://access.redhat.com/security/cve/CVE-2024-38809",
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/582bfccbb72e5c8959a0b472d1dc7d03a20520f3",
+            "https://github.com/spring-projects/spring-framework/commit/8d16a50907c11f7e6b407d878a26e84eba08a533",
+            "https://github.com/spring-projects/spring-framework/commit/bb17ad8314b81850a939fd265fb53b3361705e85",
+            "https://github.com/spring-projects/spring-framework/issues/33372",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38809",
+            "https://security.netapp.com/advisory/ntap-20240920-0003/",
+            "https://spring.io/security/cve-2024-38809",
+            "https://www.cve.org/CVERecord?id=CVE-2024-38809"
+          ],
+          "PublishedDate": "2024-09-27T17:15:12.393Z",
+          "LastModifiedDate": "2024-11-21T09:26:51.01Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38820",
+          "PkgName": "org.springframework:spring-web",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-web-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.1.14",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38820",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "The fix for CVE-2022-22968 made disallowedFieldspatterns in DataBinder ...",
+          "Description": "The fix for CVE-2022-22968 made disallowedFields patterns in DataBinder case insensitive. However, String.toLowerCase() has some Locale dependent exceptions that could potentially result in fields not protected as expected.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-178"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/23656aebc6c7d0f9faff1080981eb4d55eff296c",
+            "https://github.com/spring-projects/spring-framework/commits/v6.2.0-RC2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38820",
+            "https://security.netapp.com/advisory/ntap-20241129-0003",
+            "https://security.netapp.com/advisory/ntap-20241129-0003/",
+            "https://spring.io/security/cve-2024-38820"
+          ],
+          "PublishedDate": "2024-10-18T06:15:03.333Z",
+          "LastModifiedDate": "2024-11-29T12:15:07.007Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-41234",
+          "PkgName": "org.springframework:spring-web",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-web-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.2.8, 6.1.21",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-41234",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "springframework: Reflected download attack in Spring Framework with non-ASCII headers",
+          "Description": "Description\n\nIn Spring Framework, versions 6.0.x as of 6.0.5, versions 6.1.x and 6.2.x, an application is vulnerable to a reflected file download (RFD) attack when it sets a “Content-Disposition” header with a non-ASCII charset, where the filename attribute is derived from user-supplied input.\n\nSpecifically, an application is vulnerable when all the following are true:\n\n  *  The header is prepared with org.springframework.http.ContentDisposition.\n  *  The filename is set via ContentDisposition.Builder#filename(String, Charset).\n  *  The value for the filename is derived from user-supplied input.\n  *  The application does not sanitize the user-supplied input.\n  *  The downloaded content of the response is injected with malicious commands by the attacker (see RFD paper reference for details).\n\n\nAn application is not vulnerable if any of the following is true:\n\n  *  The application does not set a “Content-Disposition” response header.\n  *  The header is not prepared with org.springframework.http.ContentDisposition.\n  *  The filename is set via one of:  *  ContentDisposition.Builder#filename(String), or\n  *  ContentDisposition.Builder#filename(String, ASCII)\n\n\n\n  *  The filename is not derived from user-supplied input.\n  *  The filename is derived from user-supplied input but sanitized by the application.\n  *  The attacker cannot inject malicious content in the downloaded content of the response.\n\n\nAffected Spring Products and VersionsSpring Framework:\n\n  *  6.2.0 - 6.2.7\n  *  6.1.0 - 6.1.20\n  *  6.0.5 - 6.0.28\n  *  Older, unsupported versions are not affected\n\n\nMitigationUsers of affected versions should upgrade to the corresponding fixed version.\n\nAffected version(s)Fix versionAvailability6.2.x6.2.8OSS6.1.x6.1.21OSS6.0.x6.0.29 Commercial https://enterprise.spring.io/ No further mitigation steps are necessary.\n\n\nCWE-113 in `Content-Disposition` handling in VMware Spring Framework versions 6.0.5 to 6.2.7 allows remote attackers to launch Reflected File Download (RFD) attacks via unsanitized user input in `ContentDisposition.Builder#filename(String, Charset)` with non-ASCII charsets.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-113"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N",
+              "V3Score": 6.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-41234",
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/f0e7b42704e6b33958f242d91bd690d6ef7ada9c",
+            "https://github.com/spring-projects/spring-framework/commit/fd68ea6fcbf94fc1d38bfefd3692fe094652ab3d",
+            "https://github.com/spring-projects/spring-framework/issues/35034",
+            "https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N\u0026version=3.1",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-41234",
+            "https://spring.io/security/cve-2025-41234",
+            "https://www.cve.org/CVERecord?id=CVE-2025-41234"
+          ],
+          "PublishedDate": "2025-06-12T22:15:21.09Z",
+          "LastModifiedDate": "2025-06-16T12:32:18.84Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38816",
+          "PkgName": "org.springframework:spring-webflux",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-webflux-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.1.13",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38816",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "spring-webmvc: Path Traversal Vulnerability in Spring Applications Using RouterFunctions and FileSystemResource",
+          "Description": "Applications serving static resources through the functional web frameworks WebMvc.fn or WebFlux.fn are vulnerable to path traversal attacks. An attacker can craft malicious HTTP requests and obtain any file on the file system that is also accessible to the process in which the Spring application is running.\n\nSpecifically, an application is vulnerable when both of the following are true:\n\n  *  the web application uses RouterFunctions to serve static resources\n  *  resource handling is explicitly configured with a FileSystemResource location\n\n\nHowever, malicious requests are blocked and rejected when any of the following is true:\n\n  *  the  Spring Security HTTP Firewall https://docs.spring.io/spring-security/reference/servlet/exploits/firewall.html  is in use\n  *  the application runs on Tomcat or Jetty",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-38816",
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/d86bf8b2056429edf5494456cffcb2b243331c49",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38816",
+            "https://security.netapp.com/advisory/ntap-20241227-0001",
+            "https://security.netapp.com/advisory/ntap-20241227-0001/",
+            "https://spring.io/security/cve-2024-38816",
+            "https://www.cve.org/CVERecord?id=CVE-2024-38816"
+          ],
+          "PublishedDate": "2024-09-13T06:15:11.19Z",
+          "LastModifiedDate": "2025-03-18T15:15:52.397Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-38819",
+          "PkgName": "org.springframework:spring-webflux",
+          "PkgPath": "app/app.jar/BOOT-INF/lib/spring-webflux-6.1.5.jar",
+          "InstalledVersion": "6.1.5",
+          "FixedVersion": "6.1.14",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c6dc86fa4d62b0c139b3240b7f76182ff7e1a71e3b9143398799d1fb37f0dacb",
+            "DiffID": "sha256:3d3c2839a657d648f1909cf264ec805d1e874ce1c82c37d26b5f6963c4d53904"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38819",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory Maven",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Amaven"
+          },
+          "Title": "org.springframework:spring-webmvc: Path traversal vulnerability in functional web frameworks",
+          "Description": "Applications serving static resources through the functional web frameworks WebMvc.fn or WebFlux.fn are vulnerable to path traversal attacks. An attacker can craft malicious HTTP requests and obtain any file on the file system that is also accessible to the process in which the Spring application is running.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-38819",
+            "https://github.com/spring-projects/spring-framework",
+            "https://github.com/spring-projects/spring-framework/commit/3bfbe30a7814c9ea1556d40df9bd87ddb3ba372d",
+            "https://github.com/spring-projects/spring-framework/commit/fb7890d73975a3d9e0763e0926df2bd0a608e87e",
+            "https://github.com/spring-projects/spring-framework/issues/33689",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-38819",
+            "https://security.netapp.com/advisory/ntap-20250110-0010",
+            "https://security.netapp.com/advisory/ntap-20250110-0010/",
+            "https://spring.io/security/cve-2024-38819",
+            "https://www.cve.org/CVERecord?id=CVE-2024-38819"
+          ],
+          "PublishedDate": "2024-12-19T18:15:10.557Z",
+          "LastModifiedDate": "2025-01-10T13:15:09.287Z"
+        }
+      ]
+    }
+  ]
+}
