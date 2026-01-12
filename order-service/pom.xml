@@ -88,6 +88,17 @@
           <format>ALL</format>
           <outputDirectory>${project.build.directory}/dependency-check</outputDirectory>
           <failBuildOnCVSS>7</failBuildOnCVSS>
+          <!-- NVD API Configuration -->
+          <nvdApiKey>${nvd.api.key}</nvdApiKey>
+          <nvdMaxRetryCount>5</nvdMaxRetryCount>
+          <!-- Increased delay to 16 seconds (recommended for API key) -->
+          <nvdApiDelay>25000</nvdApiDelay>
+          <!-- Use centralized data directory for caching -->
+          <dataDirectory>${user.home}/.m2/dependency-check-data</dataDirectory>
+          <!-- Enable auto-update to use NVD API -->
+          <autoUpdate>true</autoUpdate>
+          <!-- Allow scan to complete even if NVD update fails -->
+          <failOnError>false</failOnError>
         </configuration>
       </plugin>
       <plugin>

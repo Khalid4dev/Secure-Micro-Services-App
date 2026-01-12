@@ -79,19 +79,22 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>9.0.9</version>
+        <version>10.0.3</version>
         <configuration>
           <format>ALL</format>
           <outputDirectory>${project.build.directory}/dependency-check</outputDirectory>
           <failBuildOnCVSS>7</failBuildOnCVSS>
-          <!-- Configure to work without NVD API key -->
-          <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
-          <nvdMaxRetryCount>3</nvdMaxRetryCount>
-          <nvdApiDelay>6000</nvdApiDelay>
-          <!-- Use cached data if available -->
-          <autoUpdate>false</autoUpdate>
-          <!-- Skip NVD check if it fails -->
-          <skipOnError>true</skipOnError>
+          <!-- NVD API Configuration -->
+          <nvdApiKey>${nvd.api.key}</nvdApiKey>
+          <nvdMaxRetryCount>5</nvdMaxRetryCount>
+          <!-- Increased delay to 16 seconds (recommended for API key) -->
+          <nvdApiDelay>25000</nvdApiDelay>
+          <!-- Use centralized data directory for caching -->
+          <dataDirectory>${user.home}/.m2/dependency-check-data</dataDirectory>
+          <!-- Enable auto-update to use NVD API -->
+          <autoUpdate>true</autoUpdate>
+          <!-- Allow scan to complete even if NVD update fails -->
+          <failOnError>false</failOnError>
         </configuration>
       </plugin>
       <plugin>

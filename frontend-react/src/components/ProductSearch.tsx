@@ -14,33 +14,29 @@ interface ProductSearchProps {
 }
 
 const ProductSearch = ({ onProductFound }: ProductSearchProps) => {
-    const [productId, setProductId] = useState('');
-    const [product, setProduct] = useState<Product | null>(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [products, setProducts] = useState<Product[]>([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleSearch = async () => {
-        if (!productId || isNaN(Number(productId))) {
-            setError('Please enter a valid product ID');
+        if (!searchTerm.trim()) {
+            setError('Please enter a product name');
             return;
         }
 
         setLoading(true);
         setError('');
-        setProduct(null);
+        setProducts([]);
 
         try {
-            const response = await api.get(`/products/${productId}`);
-            setProduct(response.data);
-            if (onProductFound) {
-                onProductFound(response.data);
+            const response = await api.get(`/products/search?query=${encodeURIComponent(searchTerm)}`);
+            setProducts(response.data);
+            if (response.data.length === 0) {
+                setError('No products found with that name');
             }
         } catch (err: any) {
-            if (err.response?.status === 404) {
-                setError('Product not found');
-            } else {
-                setError('Failed to search product: ' + (err.response?.data?.message || err.message));
-            }
+            setError('Failed to search product: ' + (err.response?.data?.message || err.message));
         } finally {
             setLoading(false);
         }
@@ -52,6 +48,15 @@ const ProductSearch = ({ onProductFound }: ProductSearchProps) => {
         }
     };
 
+    const handleSelectProduct = (product: Product) => {
+        if (onProductFound) {
+            onProductFound(product);
+        }
+        // Optional: clear search after selection
+        // setSearchTerm('');
+        // setProducts([]);
+    };
+
     return (
         <div style={{
             background: '#f5f5f5',
@@ -59,13 +64,13 @@ const ProductSearch = ({ onProductFound }: ProductSearchProps) => {
             borderRadius: '8px',
             marginBottom: '2rem'
         }}>
-            <h3>Search Product by ID</h3>
+            <h3>Search Product by Name</h3>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                 <input
-                    type="number"
-                    placeholder="Enter Product ID"
-                    value={productId}
-                    onChange={(e) => setProductId(e.target.value)}
+                    type="text"
+                    placeholder="Enter Product Name"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyPress={handleKeyPress}
                     style={{
                         flex: 1,
@@ -103,20 +108,43 @@ const ProductSearch = ({ onProductFound }: ProductSearchProps) => {
                 </div>
             )}
 
-            {product && (
-                <div style={{
-                    marginTop: '1rem',
-                    padding: '1rem',
-                    background: 'white',
-                    borderRadius: '4px',
-                    border: '2px solid #4CAF50'
-                }}>
-                    <h4 style={{ margin: '0 0 0.5rem 0', color: '#4CAF50' }}>Product Found!</h4>
-                    <p><strong>ID:</strong> {product.id}</p>
-                    <p><strong>Name:</strong> {product.name}</p>
-                    <p><strong>Description:</strong> {product.description}</p>
-                    <p><strong>Price:</strong> ${product.price.toFixed(2)}</p>
-                    <p><strong>Stock:</strong> {product.stockQuantity}</p>
+            {products.length > 0 && (
+                <div style={{ marginTop: '1rem' }}>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: '#666' }}>Results ({products.length}):</h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        {products.map(product => (
+                            <div key={product.id} style={{
+                                padding: '1rem',
+                                background: 'white',
+                                borderRadius: '4px',
+                                border: '1px solid #ddd',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}>
+                                <div>
+                                    <div style={{ fontWeight: 'bold' }}>{product.name}</div>
+                                    <div style={{ fontSize: '0.9rem', color: '#666' }}>
+                                        ${product.price ? product.price.toFixed(2) : 'N/A'} - Stock: {product.stockQuantity}
+                                    </div>
+                                    <div style={{ fontSize: '0.8rem', color: '#888' }}>{product.description}</div>
+                                </div>
+                                <button
+                                    onClick={() => handleSelectProduct(product)}
+                                    style={{
+                                        padding: '0.5rem 1rem',
+                                        background: '#4CAF50',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    Select
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

@@ -27,6 +27,11 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/search")
+    public List<ProductResponse> searchProducts(@RequestParam String query) {
+        return productService.searchProducts(query);
+    }
+
     @GetMapping("/{id}")
     public ProductResponse getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
